@@ -32,7 +32,7 @@
               "name": "entity.name.type.stanza"
             },
             {
-              "match": "^(?:defpackage|deftype|defstruct|defn|defmulti|defmethod|val|var)$",
+              "match": "^(?:defpackage|deftype|defstruct|defn|defmulti|defmethod|val|var|import|with)$",
               "name": "keyword.other.stanza"
             },
             {
