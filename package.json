@@ -1,6 +1,6 @@
 {
   "name": "language-stanza",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "description": "L.B.Stanza Language support in Atom",
   "engines": {
     "atom": "*"
