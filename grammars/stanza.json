@@ -32,11 +32,11 @@
               "name": "entity.name.type.stanza"
             },
             {
-              "match": "^(?:defpackage|deftype|defstruct|defn|defmulti|defmethod|val|var|import|with)$",
+              "match": "^(?:defpackage|deftype|defstruct|defn|defmulti|defmethod|defsyntax|defrule|val|var|import|with)$",
               "name": "keyword.other.stanza"
             },
             {
-              "match": "^(?:if|else|when|match|let|where|for|do|while|label|generate|try|catch|finally|attempt|fn|multifn|qquote)$",
+              "match": "^(?:if|else|when|match|let|where|for|do|while|label|generate|try|catch|finally|throw|attempt|fn|multifn|qquote)$",
               "name": "keyword.control.stanza"
             },
             {
