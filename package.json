@@ -1,0 +1,17 @@
+{
+  "name": "language-stanza",
+  "version": "0.1.0",
+  "description": "L.B.Stanza Language support in Atom",
+  "engines": {
+    "atom": "*"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hackwaly/language-stanza.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hackwaly/language-stanza/issues"
+  },
+  "license": "MIT"
+}

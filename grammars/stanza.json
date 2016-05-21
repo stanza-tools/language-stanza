@@ -1,0 +1,55 @@
+{
+  "scopeName": "source.stanza",
+  "name": "stanza",
+  "fileTypes": ["stanza"],
+  "patterns": [
+    {
+      "match": ";.*",
+      "name": "comment.line.stanza"
+    },
+    {
+      "match": "^(#define|#if-defined|#if-not-defined|#else)",
+      "name": "meta.compile_time_flags.stanza"
+    },
+    {
+      "match": "[ \t,\\[\\](){}]"
+    },
+    {
+      "match": "-?[0-9][^ \t,.:&|<>\\[\\]{}()]*",
+      "name": "constant.numeric.stanza"
+    },
+    {
+      "match": "\"[^\"]*\"",
+      "name": "constant.string.quoted.double.stanza"
+    },
+    {
+      "match": "[^ \t0-9~!@#$%^*+-=/.:&|<>][^ \t,.:&|<>\\[\\]{}()]*",
+      "captures": {
+        "0": {
+          "patterns": [
+            {
+              "match": "^(?:[A-Z][A-Za-z0-9_]*)$",
+              "name": "entity.name.type.stanza"
+            },
+            {
+              "match": "^(?:defpackage|deftype|defstruct|defn|defmulti|defmethod|val)$",
+              "name": "keyword.other.stanza"
+            },
+            {
+              "match": "^(?:if|else|when|match|let|where|for|do|while|label|generate|try|catch|finally|attempt|fn|multifn|qquote)$",
+              "name": "keyword.control.stanza"
+            },
+            {
+              "match": "^(new|to|through|by|in|not)$",
+              "name": "keyword.operator.stanza"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "match": "[~!@#$%^*+-=/.:&|<>]+",
+      "name": "keyword.operator.stanza"
+    }
+  ]
+}
