@@ -36,11 +36,11 @@
               "name": "keyword.other.stanza"
             },
             {
-              "match": "^(?:if|else|when|match|let|where|for|do|while|label|generate|try|catch|finally|throw|attempt|fn|multifn|qquote)$",
+              "match": "^(?:if|else|when|switch|match|let|where|for|do|while|label|break|generate|yield|try|catch|finally|throw|attempt|fn|multifn|qquote)$",
               "name": "keyword.control.stanza"
             },
             {
-              "match": "^(new|to|through|by|in|not)$",
+              "match": "^(new|to|through|by|in|not|as|is)$",
               "name": "keyword.operator.stanza"
             }
           ]
