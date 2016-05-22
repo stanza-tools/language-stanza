@@ -8,8 +8,8 @@
       "name": "comment.line.stanza"
     },
     {
-      "match": "^(#define|#if-defined|#if-not-defined|#else)",
-      "name": "meta.compile_time_flags.stanza"
+      "match": "^[ \t]*(#define|#if-defined|#if-not-defined|#else)",
+      "name": "meta.keyword.compile_time_flags.stanza"
     },
     {
       "match": "[ \t,\\[\\](){}]"
@@ -32,23 +32,27 @@
               "name": "entity.name.type.stanza"
             },
             {
-              "match": "^(?:defpackage|deftype|defstruct|defn|defmulti|defmethod|defsyntax|defrule|val|var|import|with|public|private|protected)$",
+              "match": "^(?:defpackage|deftype|defstruct|defn\\*?|defmulti|defmethod\\*?|defsyntax|defrule|val|var|import|with|public|protected|extern)$",
               "name": "keyword.other.stanza"
             },
             {
-              "match": "^(?:if|else|when|switch|match|let|where|for|do|while|label|break|generate|yield|try|catch|finally|throw|attempt|fn|multifn|qquote)$",
+              "match": "^(?:if|else|when|switch|match|let|let-var|where|for|while|label|break|generate|yield|try|catch|finally|throw|attempt|fn\\*?|multifn\\*?|qquote)$",
               "name": "keyword.control.stanza"
             },
             {
-              "match": "^(new|to|through|by|in|not|as|is)$",
+              "match": "^(new|to|through|by|in|and|or|not|as\\??|is)$",
               "name": "keyword.operator.stanza"
+            },
+            {
+              "match": "^(true|false)$",
+              "name": "constant.language.stanza"
             }
           ]
         }
       }
     },
     {
-      "match": "[~!@#$%^*+-=/.:&|<>]+",
+      "match": "[~!@#$%^*+-=/.:&|<>]+(?:[ \t]|$)",
       "name": "keyword.operator.stanza"
     }
   ]
