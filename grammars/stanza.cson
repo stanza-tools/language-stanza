@@ -42,6 +42,9 @@ patterns: [
       {
         match: "_"
         name: "variable.language.stanza"
+      },
+      {
+        include: "$self"
       }
     ]
   },
@@ -63,6 +66,12 @@ patterns: [
         name: "keyword.other.interpolation.stanza"
       }
     ]
+  },
+  {
+    match: "'.(.*)'",
+    name: "string.quoted.single.char.stanza"
+    captures:
+      1: name: "invalid.illegal.char.stanza"
   },
   {
     begin: "label",
