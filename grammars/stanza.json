@@ -12,6 +12,30 @@
       "name": "meta.keyword.compile_time_flags.stanza"
     },
     {
+      "match": "^(defpackage)\\s+([a-zA-Z][\\w\\-]*)\\s*:$",
+      "name": "meta.declaration.package.stanza",
+      "captures": {
+        "1": {
+          "name": "storage.type.package.stanza"
+        },
+        "2": {
+          "name": "entity.name.type.package.stanza"
+        }
+      }
+    },
+    {
+      "match": "^(defn)\\s+([a-zA-Z][\\w\\-]*)\\s+",
+      "name": "meta.declaration.function.stanza",
+      "captures": {
+        "1": {
+          "name": "storage.type.function.stanza"
+        },
+        "2": {
+          "name": "entity.name.function.stanza"
+        }
+      }
+    },
+    {
       "match": "[ \t,\\[\\](){}]"
     },
     {
@@ -19,8 +43,25 @@
       "name": "constant.numeric.stanza"
     },
     {
-      "match": "\"[^\"]*\"",
-      "name": "constant.string.quoted.double.stanza"
+      "begin": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.stanza"
+        }
+      },
+      "end": "\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.stanza"
+        }
+      },
+      "name": "string.quoted.double.stanza",
+      "patterns": [
+        {
+          "match": "(?<!\\\\)%[_*,~@%]",
+          "name": "keyword.other.interpolation.stanza"
+        }
+      ]
     },
     {
       "match": "[^ \t0-9~!@#$%^*+-=/.:&|<>][^ \t,.:&|<>\\[\\]{}()]*",
