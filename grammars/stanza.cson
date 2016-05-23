@@ -1,0 +1,210 @@
+{
+  scopeName: "source.stanza",
+  name: "L.B. Stanza",
+  fileTypes: ["stanza"],
+  patterns: [
+    {
+      match: ";.*",
+      name: "comment.line.stanza"
+    },
+    {
+      match: "^[ \t]*(#define|#if-defined|#if-not-defined|#else)",
+      name: "meta.keyword.compile_time_flags.stanza"
+    },
+    {
+      match: "(?x)^
+        (defpackage|defstruct)\\s+
+        ([^ \t0-9~!@#$%^*+-=/.:&|<>][^ \t,.:&|<>\\[\\]{}()]*)
+        \\s*:$",
+      name: "meta.declaration.package.stanza",
+      captures: {
+        1: {
+          name: "storage.type.package.stanza"
+        },
+        2: {
+          name: "entity.name.type.package.stanza"
+        }
+      }
+    },
+    {
+      match: "(?x)
+        (defn)\\s+
+        ([^ \t0-9~!@#$%^*+-=/.:&|<>][^ \t,.:&|<>\\[\\]{}()]*)
+        \\s+",
+      name: "meta.declaration.function.stanza",
+      captures: {
+        1: {
+          name: "storage.type.function.stanza"
+        },
+        2: {
+          name: "entity.name.function.stanza"
+        }
+      }
+    },
+    {
+      match: "[ \t,\\[\\]()]"
+    },
+    {
+      begin: '{'
+      end: '}'
+      captures:
+        0: name: "keyword.other.function.anon.stanza"
+      patterns: [
+        {
+          match: "_"
+          name: "variable.language.stanza"
+        }
+      ]
+    },
+    {
+      match: "-?[0-9][^ \t,.:&|<>\\[\\]{}()]*",
+      name: "constant.numeric.stanza"
+    },
+    {
+      begin: "\"",
+      beginCaptures: {
+        0: { name: "punctuation.definition.string.begin.stanza" }
+      },
+      end: "\"",
+      endCaptures: {
+        0: { name: "punctuation.definition.string.end.stanza" }
+      },
+      name: "string.quoted.double.stanza",
+      patterns: [
+        {
+          match: "(?<!\\\\)%[_*,~@%]",
+          name: "keyword.other.interpolation.stanza"
+        }
+      ]
+    },
+    {
+      begin: "label",
+      beginCaptures: {
+        0: { name: "storage.type.scope.stanza" }
+      },
+      end: ":",
+      endCaptures: {
+        0: { name: "keyword.operator.colon.stanza" }
+      },
+      name: "meta.scope.label.stanza",
+      patterns: [
+        {
+          begin: "<",
+          end: ">",
+          name: "meta.scope.type.stanza",
+          patterns: [
+            {
+              include: "#types"
+            }
+          ]
+        },
+        {
+          match: "[^ \t0-9~!@#$%^*+-=/.:&|<>][^ \t,.:&|<>\\[\\]{}()]*",
+          name: "entity.section.scope.stanza"
+        }
+      ]
+    },
+    {
+      match: "(?x)\\b(
+        (?:not-)?equal\\?|compare|
+        less(?:-eq)?\\?|greater(?:-eq)?\\?|to-seq|
+        max(?:imum)?|min(?:imum)?|hash|length|empty\\?|next|peek|
+        get\\??|set|map!?|reverse!|in-reverse|
+        print(?:ln)?(?:-all)?|
+        (?:with|current)-output-stream|get-(?:char|byte)|
+        (?:do-)indented|put|close|with-output-file|spit|
+        write(?:-all)?|close|slurp|peek\\?|info|
+        bits(?:-as-(?:float|double))?|rand|fill(?:-template)?|
+        (?:ceil|floor)-log2|(?:next|prev)-pow2|sum|product|
+        complement|digit\\?|letter\\?|(?:upper|lower)-case\\??|
+        start|end|step|inclusive\\?|to-string|
+        matches\\?|prefix\\?|suffix\\?|append(?:-all)?|
+        string-join|(?:last-)?index-of-chars?|replace|trim|
+        add(?:-all)?|clear|to-array|(?:get|set)-chars|
+        to-tuple|cons|to-list|headn?|tailn?|(?:in-)?reverse|
+        (?:but-)?last|transpose|seq-append|filename|line|column|
+        item|unwrap-(?:token|all)|key(?:\\?|s)?|value(?:\\?|!|s)?|
+        to-symbol|symbol-join|gensym|name|id|qualified\\?|qualifier|
+        throw|with-(?:exception-handler|finally)|try-catch-finally|
+        fatal|fail|with-attempt|attempt-else|generate|
+        resume|suspend|break|close|active\\?|open\\?|
+        dynamic-wind|find!?|first!?|seq\\??|filter|
+        index-when!?|split|take-(?:while|until)|seq-cat|
+        all\\?|none\\?|any\\?|count|repeat(?:-while)?|repeatedly|
+        take(?:-up-to)?-n|cat(?:-all)?|join|zip(?:-all)?|
+        contains\\?|index-of!?|reduce(?:-right)?|unique|
+        lookup\\??|parallel-seq|qsort!|lazy-qsort|marker!?|
+        add-gc-notifier|command-line-arguments|file-exists\\?|
+        delete-file|resolve-path|current-time-(?:ms|us)|
+        (?:get|set)-env|call-system|stop|time|
+        exp|log(?:10)?|pow|sin|cos|tan|asin|acos|atan|atan2|
+        sinh|cosh|tanh|ceil|floor|round|to-(?:radians|degrees)|
+        to-vector|pop|peek|remove(?:-item|when)?|update|shorten|
+        lengthen|default\\?|read(?:-file|-all)?|tagged-list\\?
+      )(?=\\(|\\{)"
+      name: "support.function.core.stanza"
+    },
+    {
+      match: "[^ \t0-9~!@#$%^*+-=/.:&|<>][^ \t,.:&|<>\\[\\]{}()]*",
+      captures: {
+        0: {
+          patterns: [
+            {
+              include: "#types"
+            },
+            {
+              match: "^(?:val|import|with)$",
+              name: "keyword.other.stanza"
+            },
+            {
+              match: "(?x)^(?:
+                var|defpackage|deftype|defstruct|defn\\*?|
+                defmulti|defmethod\\*?|defsyntax|defrule
+              )$"
+              name: "storage.type.stanza"
+            }
+            {
+              match: "^(?:public|protected|extern)$"
+              name: "storage.modifier.stanza"
+            },
+            {
+              match: "(?x)^(?:
+                if|else|when|switch|match|let|let-var|
+                where|for|while|label|yield|try|catch|
+                finally|throw|attempt|fn\\*?|
+                multifn\\*?|qquote
+              )$",
+              name: "keyword.control.stanza"
+            },
+            {
+              match: "^(new|to|through|by|in|and|or|not|as\\??|is|do|seq)$",
+              name: "keyword.operator.stanza"
+            },
+            {
+              match: "^(true|false)$",
+              name: "constant.language.stanza"
+            }
+          ]
+        }
+      }
+    },
+    {
+      match: "[~!@#$%^*+\\-=/.:&|<>]+(?:[ \t]|$)",
+      name: "keyword.operator.stanza"
+    }
+  ],
+  repository: {
+    types: {
+      patterns: [
+        {
+          match: "(?<!\\w)\\?",
+          name: "support.type.unknown.stanza"
+        },
+        {
+          match: "[A-Z][A-Za-z0-9_]*",
+          name: "support.type.stanza"
+        }
+      ]
+    }
+  }
+}
