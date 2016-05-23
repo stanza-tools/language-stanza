@@ -11,18 +11,40 @@ patterns: [
     name: "meta.keyword.compile_time_flags.stanza"
   },
   {
-    match: "(?x)^
-      (defpackage|defstruct)\\s+
-      ([^ \t0-9~!@#$%^*+-=/.:&|<>][^ \t,.:&|<>\\[\\]{}()]*)
-      \\s*:$",
+    begin: "defpackage|defstruct|deftype"
+    beginCaptures:
+      0: name: "storage.type.package.stanza"
+    end: "\\s*$|:|(?=;)"
+    endCaptures:
+      0: name: "keyword.operator.colon.stanza"
+    patterns: [
+      {
+        match: "[A-Z][A-Za-z0-9_]*"
+        name: "entity.name.type.stanza"
+      },
+      {
+        match: "[^ \t0-9~!@#$%^*+-=/.:&|<>][^ \t,.:&|<>\\[\\]{}()]*"
+        name: "entity.name.section.stanza"
+      },
+      {
+        begin: "(<:)"
+        beginCaptures:
+          0: name: "keyword.operator.parent.stanza"
+        end: "(?=:)"
+        contentName: "entity.other.inherited-class.stanza"
+        patterns: [
+          {
+            match: "&"
+            name: "keyword.operator.intersection.stanza"
+          }
+        ]
+      }
+    ]
     name: "meta.declaration.package.stanza",
-    captures:
-      1: name: "storage.type.package.stanza"
-      2: name: "entity.name.type.package.stanza"
   },
   {
     match: "(?x)
-      (defn)\\s+
+      (defn|defmethod|defmulti)\\*?\\s+
       ([^ \t0-9~!@#$%^*+-=/.:&|<>][^ \t,.:&|<>\\[\\]{}()]*)
       \\s+",
     name: "meta.declaration.function.stanza",
