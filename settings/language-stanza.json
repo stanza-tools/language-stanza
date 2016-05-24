@@ -1,7 +1,12 @@
 {
   ".source.stanza": {
     "editor": {
-      "increaseIndentPattern": ":$"
+      "increaseIndentPattern": "^.*:$",
+      "decreaseIndentPattern": "^\\s*else\\s*:$",
+      "commentStart": "; ",
+      "nonWordCharacters": ",.:&|<>[]{}()",
+      "tabLength": 3,
+      "showIndentGuide": false
     }
   }
 }
