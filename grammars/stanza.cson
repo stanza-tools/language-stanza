@@ -122,7 +122,7 @@ patterns: [
     ]
   },
   {
-    match: "(?x)\\b(
+    match: "(?x)(?<!\\-)\\b(
       (?:not-)?equal\\?|compare|
       less(?:-eq)?\\?|greater(?:-eq)?\\?|to-seq|
       max(?:imum)?|min(?:imum)?|hash|length|empty\\?|next|peek|
@@ -229,7 +229,7 @@ repository:
   lostanza:
     patterns: [
       {
-        match: "(?<!\\w|\\-)(?:return|call-c|value|new)(?!\\w|\\-)"
+        match: "(?<!\\w|\\-)(?:return|call-c|value|new)(?!\\w|\\-|\\:)"
         name: "keyword.other.special-method.lostanza.stanza"
       }
       {
