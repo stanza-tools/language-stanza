@@ -46,11 +46,12 @@ patterns: [
     match: "(?x)
       (defn|defmethod|defmulti)\\*?\\s+
       ([^ \t0-9~!@#$%^*+-=/.:&|<>][^ \t,.:&|<>\\[\\]{}()]*)
-      \\s+",
+      (\\s+|\\<)",
     name: "meta.declaration.function.stanza",
     captures:
       1: name: "storage.type.function.stanza"
       2: name: "entity.name.function.stanza"
+      3: name: "keyword.operator.parameter.stanza"
   },
   # {
   #   match: "[ \t,\\[\\]()]"
@@ -236,7 +237,7 @@ repository:
         beginCaptures:
           1: name: "keyword.other.lostanza.stanza"
           2: name: "punctuation.section.embedded.stanza"
-        end: "\\>"
+        end: "(?<!\\-)\\>"
         endCaptures:
           0: name: "punctuation.section.embedded.stanza"
         name: "meta.type.lostanza.stanza"
@@ -279,7 +280,7 @@ repository:
         name: "keyword.other.unit.unknown.stanza"
       },
       {
-        match: "(?<!\\w)[A-Z][A-Za-z0-9_]*(?!\\(|\\w|\\:)",
+        match: "(?<!\\w)([A-Z][A-Za-z0-9_-]*)(?![(:\\-]|\\s+=|\\w)",
         name: "support.type.stanza"
       },
       {
