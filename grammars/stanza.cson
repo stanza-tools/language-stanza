@@ -30,7 +30,7 @@ patterns: [
         begin: "(<:)"
         beginCaptures:
           0: name: "keyword.operator.parent.stanza"
-        end: "\\s*$|(?=[:;])"
+        end: "(?=\\s*$)|(?=[:;])"
         contentName: "entity.other.inherited-class.stanza"
         patterns: [
           {
@@ -71,7 +71,7 @@ patterns: [
     ]
   },
   {
-    match: "-?[0-9][^ \t,.:&|<>\\[\\]{}()]*",
+    match: "(?<!\\w)-?[0-9][^ \t,.:&|<>\\[\\]{}()]*",
     name: "constant.numeric.stanza"
   },
   {
