@@ -158,7 +158,7 @@ patterns: [
       sinh|cosh|tanh|ceil|floor|round|to-(?:radians|degrees)|
       to-vector|pop|peek|remove(?:-item|when)?|update|shorten|
       lengthen|default\\?|read(?:-file|-all)?|tagged-list\\?
-    )(?=\\(|\\{)"
+    )(?=\\(|\\{|\\s+\\$)"
     name: "support.function.core.stanza"
   },
   {
