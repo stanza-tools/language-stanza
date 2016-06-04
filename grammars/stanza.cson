@@ -52,9 +52,9 @@ patterns: [
       1: name: "storage.type.function.stanza"
       2: name: "entity.name.function.stanza"
   },
-  {
-    match: "[ \t,\\[\\]()]"
-  },
+  # {
+  #   match: "[ \t,\\[\\]()]"
+  # },
   {
     begin: '{'
     end: '}'
@@ -161,61 +161,129 @@ patterns: [
     name: "support.function.core.stanza"
   },
   {
-    match: "[^ \t0-9~!@#$%^*+-=/.:&|<>][^ \t,.:&|<>\\[\\]{}()]*",
-    captures:
-      0:
-        patterns: [
-          {
-            include: "#types"
-          },
-          {
-            match: "^(?:val|import|with)$",
-            name: "keyword.other.stanza"
-          },
-          {
-            match: "(?x)^(?:
-              var|defpackage|deftype|defstruct|defn\\*?|
-              defmulti|defmethod\\*?|defsyntax|defrule
-            )$"
-            name: "storage.type.stanza"
-          }
-          {
-            match: "^(?:public|protected|extern)$"
-            name: "storage.modifier.stanza"
-          },
-          {
-            match: "(?x)^(?:
-              if|else|when|switch|match|let|let-var|
-              where|for|while|label|yield|try|catch|
-              finally|throw|attempt|fn\\*?|
-              multifn\\*?|qquote
-            )$",
-            name: "keyword.control.stanza"
-          },
-          {
-            match: "^(new|to|through|by|in|and|or|not|as\\??|is|do|seq)$",
-            name: "keyword.operator.stanza"
-          },
-          {
-            match: "^(true|false)$",
-            name: "constant.language.stanza"
-          }
-        ]
-  },
+    # begin: "(?<![\\w\\-])(lostanza)(?![\\w\\-])(?=.*:$)"
+    # beginCaptures:
+    #   1: name: "keyword.control.lostanza.stanza"
+    # end: "^$"
+    # name: "meta.lostanza.stanza"
+    # patterns: [
+    #   {
+    #     begin: "^(\\s+)(?=\\S)"
+    #     # end: "^(?!\\1\\s*\\S)(?=\\s*\\S)"
+    #     while: "(?:^|\\G)(\\1\\s*(?=\\S)|\\s*$)"
+    #     endPatterns:
+    #       0: name: "invalid.illegal.stanza"
+    #     patterns: [
+    #       {
+    #         include: "#lostanza"
+    #       }
+    #     ]
+    #   }
+    # ]
+    include: "#lostanza"
+  }
+  {
+    include: "#types"
+  }
+  {
+    match: "(?<!\\w|\\-)(?:val|import|with)(?!\\w|\\-)",
+    name: "keyword.other.stanza"
+  }
+  {
+    match: "(?x)(?<!\\w|\\-)(?:
+      var|defpackage|deftype|defstruct|defn\\*?|
+      defmulti|defmethod\\*?|defsyntax|defrule
+    )(?!\\w|\\-)"
+    name: "storage.type.stanza"
+  }
+  {
+    match: "(?<!\\w|\\-)(public|protected|extern|lostanza)(?!\\w|\\-)"
+    name: "storage.modifier.stanza"
+  }
+  {
+    match: "(?x)(?<!\\w|\\-)(?:
+      if|else|when|switch|match|let|let-var|
+      where|for|while|label|yield|try|catch|
+      finally|throw|attempt|fn\\*?|
+      multifn\\*?|qquote
+    )(?!\\w|\\-)",
+    name: "keyword.control.stanza"
+  }
+  {
+    match: "(?x)(?<!\\w|\\-)(?:
+      new|to|through|by|in|and|or|not|as\\??|is|do|seq
+    )(?!\\w|\\-)",
+    name: "keyword.operator.stanza"
+  }
+  {
+    match: "(?<!\\w|\\-)(true|false)(?!\\w|\\-)",
+    name: "constant.language.stanza"
+  }
   {
     match: "[~!@#$%^*+\\-=/.:&|<>]+(?:[ \t]|$)",
     name: "keyword.operator.stanza"
   }
 ],
 repository:
+  lostanza:
+    patterns: [
+      {
+        match: "(?<!\\w|\\-)(?:return|call-c|value|new)(?!\\w|\\-)"
+        name: "keyword.other.special-method.lostanza.stanza"
+      }
+      {
+        begin: "(ptr|ref)(\\<)"
+        beginCaptures:
+          1: name: "keyword.other.lostanza.stanza"
+          2: name: "punctuation.section.embedded.stanza"
+        end: "\\>"
+        endCaptures:
+          0: name: "punctuation.section.embedded.stanza"
+        name: "meta.type.lostanza.stanza"
+        patterns: [
+          {
+            include: "#lostanza"
+          }
+          {
+            include: "#types"
+          }
+        ]
+      }
+      {
+        match: "\\baddr!?(?=\\(|\\{)"
+        name: "support.function.lostanza.stanza"
+      }
+      {
+        begin: "(?<=\\s)\\["
+        end: "\\]"
+        captures:
+          0: name: "punctuation.section.embedded.deref.stanza"
+        patterns: [
+          {
+            begin: "(?<=\\S)\\["
+            end: "\\]"
+            patterns: [
+              include: "$self"
+            ]
+          }
+          {
+            include: "$self"
+          }
+        ]
+      }
+    ]
   types:
     patterns: [
       {
         match: "(?<!\\w)\\?",
-        name: "support.type.unknown.stanza"
+        name: "keyword.other.unit.unknown.stanza"
       },
       {
-        match: "[A-Z][A-Za-z0-9_]*",
+        match: "(?<!\\w)[A-Z][A-Za-z0-9_]*(?!\\(|\\w)",
         name: "support.type.stanza"
+      },
+      {
+        match: "(?<!\\w|\\-)(byte|int|long|float|double)(?!\\w|\\-)"
+        name: "support.type.lostanza.stanza"
       }
     ]
