@@ -91,7 +91,7 @@ patterns: [
     ]
   },
   {
-    match: "'.(.*)'",
+    match: "'(?:\\\\.|.)(.*?)'",
     name: "string.quoted.single.char.stanza"
     captures:
       1: name: "invalid.illegal.char.stanza"
