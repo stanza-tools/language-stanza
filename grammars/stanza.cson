@@ -224,6 +224,36 @@ patterns: [
     match: "[~!@#$%^*+\\-=/.:&|<>]+(?:[ \t]|$)",
     name: "keyword.operator.stanza"
   }
+  {
+    begin: '`\\('
+    beginCaptures:
+      0: name: 'punctuation.definition.s-exp.list.stanza'
+    end: '\\)'
+    name: "constant.s-exp.stanza"
+    patterns: [
+      {
+        begin: '\\('
+        end: '\\)'
+      }
+    ]
+  }
+  {
+    begin: '`'
+    beginCaptures:
+      0: name: 'punctuation.definition.s-exp.stanza'
+    end: '(?=[\\s)}\\]])'
+    name: "constant.s-exp.stanza"
+    patterns: [
+      {
+        begin: '\\('
+        end: '\\)'
+      }
+      {
+        begin: '\\{'
+        end: '\\}'
+      }
+    ]
+  }
 ],
 repository:
   lostanza:
@@ -255,7 +285,7 @@ repository:
         name: "support.function.lostanza.stanza"
       }
       {
-        begin: "(?<=\\s)\\["
+        begin: "(?<=\\s|\\()\\["
         end: "\\]"
         captures:
           0: name: "punctuation.section.embedded.deref.stanza"
