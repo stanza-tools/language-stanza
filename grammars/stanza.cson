@@ -238,6 +238,19 @@ patterns: [
     ]
   }
   {
+    begin: '(\\\\<)(.+?)(>)'
+    beginCaptures:
+      1: name: 'punctuation.definition.here.tag.stanza'
+      2: name: 'entity.name.tag.here.stanza'
+      3: name: 'punctuation.definition.here.tag.stanza'
+    end: '(<)(\\2)(>)'
+    endCaptures:
+      1: name: 'punctuation.definition.here.tag.stanza'
+      2: name: 'entity.name.tag.here.stanza'
+      3: name: 'punctuation.definition.here.tag.stanza'
+    contentName: 'string.unquoted.here.stanza'
+  }
+  {
     begin: '`'
     beginCaptures:
       0: name: 'punctuation.definition.s-exp.stanza'
