@@ -323,7 +323,7 @@ repository:
         name: "keyword.other.unit.unknown.stanza"
       },
       {
-        match: "(?<!\\w)([A-Z][A-Za-z0-9_-]*)(?![(:\\-]|\\s+=|\\w)",
+        match: "(?<!\\w)([A-Z][A-Za-z0-9_-]*)(?![(:\\-]|\\w)",
         name: "support.type.stanza"
       },
       {
