@@ -323,6 +323,17 @@ repository:
         name: "keyword.other.unit.unknown.stanza"
       },
       {
+        begin: "(?<!\\w)([A-Z][A-Za-z0-9_-]*)(?![(:\\-]|\\w)(<)",
+        captures:
+          1: name: "support.type.parameterized.stanza"
+          2: name: "punctuation.section.type.parameter.begin.stanza"
+        end: '(?!\\-)>'
+        endCaptures:
+          0: name: "punctuation.section.type.parameter.end.stanza"
+        name: 'meta.type.parameterized.stanza'
+        patterns: [ { include: "#types" } ]
+      },
+      {
         match: "(?<!\\w)([A-Z][A-Za-z0-9_-]*)(?![(:\\-]|\\w)",
         name: "support.type.stanza"
       },
