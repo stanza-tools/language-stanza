@@ -279,10 +279,10 @@ repository:
         begin: "(ptr|ref)(\\<)"
         beginCaptures:
           1: name: "keyword.other.lostanza.stanza"
-          2: name: "punctuation.section.embedded.stanza"
+          2: name: "punctuation.section.stanza"
         end: "(?<!\\-)\\>"
         endCaptures:
-          0: name: "punctuation.section.embedded.stanza"
+          0: name: "punctuation.section.stanza"
         name: "meta.type.lostanza.stanza"
         patterns: [
           {
