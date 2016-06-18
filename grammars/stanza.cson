@@ -63,7 +63,7 @@ patterns: [
       0: name: "keyword.other.function.anon.stanza"
     patterns: [
       {
-        match: "_"
+        match: "(?<!\\w)_(?!\\w)"
         name: "variable.language.stanza"
       },
       {
