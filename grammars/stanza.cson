@@ -206,13 +206,13 @@ patterns: [
       if|else|when|switch|match|let|let-var|
       where|for|while|label|yield|try|catch|
       finally|throw|attempt|fn\\*?|
-      multifn\\*?|qquote
+      multifn\\*?|qquote|do
     )(?!\\w|\\-)",
     name: "keyword.control.stanza"
   }
   {
     match: "(?x)(?<!\\w|\\-)(?:
-      new|to|through|by|in|and|or|not|as\\??|is|do|seq
+      new|to|through|by|in|and|or|not|as\\??|is|seq
     )(?!\\w|\\-)",
     name: "keyword.operator.stanza"
   }
