@@ -286,6 +286,24 @@ patterns: [
       }
     ]
   }
+  {
+    begin: "(?<=\\s|\\()\\["
+    end: "\\]"
+    captures:
+      0: name: "punctuation.section.embedded.deref.stanza"
+    patterns: [
+      {
+        begin: "(?<=\\S)\\["
+        end: "\\]"
+        patterns: [
+          include: "$self"
+        ]
+      }
+      {
+        include: "$self"
+      }
+    ]
+  }
 ],
 repository:
   lostanza:
