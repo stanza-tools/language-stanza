@@ -335,13 +335,12 @@ patterns: [
   {
     begin: "(?x)
       (\\s*)(?:(val|var)\\s+.+\\s+(=)\\s+)?
-      (new)\\s+([A-Z][A-Za-z0-9_]*)(\\s*:)?$"
+      (new)\\s+([A-Z][A-Za-z0-9_]*)(?=.*:$)"
     beginCaptures:
       2: name: "storage.type.stanza"
       3: name: "keyword.operator.stanza"
       4: name: "storage.type.stanza"
-      5: name: "entity.name.type.stanza"
-      6: name: "keyword.operator.stanza"
+      5: name: "support.type.stanza"
     end: "^(?!\\1\\s+|\\n)"
     patterns: [
       {
