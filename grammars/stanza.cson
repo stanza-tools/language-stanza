@@ -168,26 +168,39 @@ patterns: [
     name: "support.function.core.stanza"
   },
   {
-    # begin: "(?<![\\w\\-])(lostanza)(?![\\w\\-])(?=.*:$)"
-    # beginCaptures:
-    #   1: name: "keyword.control.lostanza.stanza"
-    # end: "^$"
-    # name: "meta.lostanza.stanza"
-    # patterns: [
-    #   {
-    #     begin: "^(\\s+)(?=\\S)"
-    #     # end: "^(?!\\1\\s*\\S)(?=\\s*\\S)"
-    #     while: "(?:^|\\G)(\\1\\s*(?=\\S)|\\s*$)"
-    #     endPatterns:
-    #       0: name: "invalid.illegal.stanza"
-    #     patterns: [
-    #       {
-    #         include: "#lostanza"
-    #       }
-    #     ]
-    #   }
-    # ]
-    include: "#lostanza"
+    begin: "(?x)
+      ^(\\s*)(?:(public|protected)\\s+)?
+       (lostanza|extern)(?![\\w\\-])(?=.*:$)"
+    beginCaptures:
+      2: name: "storage.modifier.privacy.stanza"
+      3: name: "support.function.lostanza.stanza"
+    end: "^(?!\\1\\s+|\\n)"
+    name: "meta.lostanza.function.stanza"
+    patterns: [
+      {
+        include: "#lostanza"
+      },
+      {
+        include: "$self"
+      }
+    ]
+  }
+  {
+    begin: "\\s*(extern)\\s+(\\S+)\\s*(:)"
+    beginCaptures:
+      1: name: "support.function.lostanza.stanza"
+      2: name: "entity.other.inherited-class.stanza"
+      3: name: "keyword.operator.stanza"
+    end: "$"
+    name: "meta.lostanza.external.stanza"
+    patterns: [
+      {
+        include: "#lostanza"
+      }
+      {
+        include: "$self"
+      }
+    ]
   }
   {
     include: "#types"
