@@ -217,7 +217,7 @@ patterns: [
     name: "storage.type.class.stanza"
   }
   {
-    match: "(?<!\\w|\\-)(public|protected|extern|lostanza)(?!\\w|\\-)"
+    match: "(?<!\\w|\\-)(public|protected)(?!\\w|\\-)"
     name: "storage.modifier.stanza"
   }
   {
@@ -231,7 +231,7 @@ patterns: [
   }
   {
     match: "(?x)(?<!\\w|\\-)(?:
-      new|to|through|by|in|and|or|not|as\\??|is|seq
+      to|through|by|in|and|or|not|as\\??|is|seq
     )(?!\\w|\\-)",
     name: "keyword.operator.stanza"
   }
