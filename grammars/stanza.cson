@@ -123,7 +123,7 @@ patterns: [
   },
   {
     match: "(?x)(?<!\\-)\\b(
-      to-(?:seq|string|array|tuple|list|symbol|byte|int|long|float|double)
+      to-(?:char|seq|string|array|tuple|list|symbol|byte|int|long|float|double)
     )(?=\\(|\\{|\\s+\\$)"
     name: "support.function.any-method.conversion.stanza"
   },
