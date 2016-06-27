@@ -170,7 +170,7 @@ patterns: [
   {
     begin: "(?x)
       ^(\\s*)(?:(public|protected)\\s+)?
-       (lostanza|extern)(?![\\w\\-])(?=.*:$)"
+       (lostanza|extern)(?![\\w\\-])(?=.*(?:=|:)$)"
     beginCaptures:
       2: name: "storage.modifier.privacy.stanza"
       3: name: "support.function.lostanza.stanza"
@@ -180,6 +180,34 @@ patterns: [
       {
         include: "#lostanza"
       },
+      {
+        include: "$self"
+      }
+    ]
+  }
+  {
+    match: "(lostanza)\\s+(deftype)\\s+(\\S+)\\s+"
+    captures:
+      1: name: "support.function.lostanza.stanza"
+      2: name: "storage.type.class.lostanza.stanza"
+      3: name: "entity.name.type.lostanza.stanza"
+    name: "meta.lostanza.type.stanza"
+  }
+  {
+    begin: "(?x)(lostanza)\\s+(?:
+      (val|var)\\s+\\S+\\s*:|
+      (defn)\\s+(\\S+)\\s+\\()"
+    beginCaptures:
+      1: name: "support.function.lostanza.stanza"
+      2: name: "storage.type.class.variable.lostanza.stanza"
+      3: name: "storage.type.class.function.lostanza.stanza"
+      4: name: "entity.name.function.lostanza.stanza"
+    end: "$"
+    name: "meta.lostanza.variable.stanza"
+    patterns: [
+      {
+        include: "#lostanza"
+      }
       {
         include: "$self"
       }
