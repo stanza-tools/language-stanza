@@ -356,6 +356,10 @@ repository:
         match: "\\baddr!?(?=\\(|\\{)"
         name: "support.function.lostanza.stanza"
       }
+      {
+        match: "(?<!\\w|\\-)(byte|int|long|float|double)(?!\\w|\\-)"
+        name: "support.type.lostanza.stanza"
+      }
     ]
   types:
     patterns: [
@@ -377,9 +381,5 @@ repository:
       {
         match: "(?<!\\w)([A-Z][A-Za-z0-9_-]*)(?![(:\\-]|\\w)",
         name: "support.type.stanza"
-      },
-      {
-        match: "(?<!\\w|\\-)(byte|int|long|float|double)(?!\\w|\\-)"
-        name: "support.type.lostanza.stanza"
       }
     ]
