@@ -117,7 +117,7 @@ patterns: [
       },
       {
         match: "[^ \t0-9~!@#$%^*+-=/.:&|<>][^ \t,.:&|<>\\[\\]{}()]*",
-        name: "entity.section.scope.stanza"
+        name: "entity.name.section.scope.stanza"
       }
     ]
   },
