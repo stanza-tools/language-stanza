@@ -304,6 +304,28 @@ patterns: [
       }
     ]
   }
+  {
+    begin: "(?x)
+      (\\s*)(?:(val|var)\\s+.+\\s+(=)\\s+)?
+      (new)\\s+([A-Z][A-Za-z0-9_]*)(\\s*:)?$"
+    beginCaptures:
+      2: name: "storage.type.stanza"
+      3: name: "keyword.operator.stanza"
+      4: name: "storage.type.stanza"
+      5: name: "entity.name.type.stanza"
+      6: name: "keyword.operator.stanza"
+    end: "^(?!\\1\\s+|\\n)"
+    patterns: [
+      {
+        match: "\\bthis\\b"
+        name: "variable.language.instance.stanza"
+      }
+      {
+        include: "$self"
+      }
+    ]
+    name: "meta.type.instance.stanza"
+  }
 ],
 repository:
   lostanza:
