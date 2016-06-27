@@ -13,7 +13,7 @@ patterns: [
   {
     begin: "defpackage|defstruct|deftype"
     beginCaptures:
-      0: name: "storage.type.package.stanza"
+      0: name: "storage.type.class.stanza"
     end: "\\s*$|:|(?=;)"
     endCaptures:
       0: name: "keyword.operator.colon.stanza"
