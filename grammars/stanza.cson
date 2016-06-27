@@ -123,8 +123,14 @@ patterns: [
   },
   {
     match: "(?x)(?<!\\-)\\b(
+      to-(?:seq|string|array|tuple|list|symbol|byte|int|long|float|double)
+    )(?=\\(|\\{|\\s+\\$)"
+    name: "support.function.any-method.conversion.stanza"
+  },
+  {
+    match: "(?x)(?<!\\-)\\b(
       (?:not-)?equal\\?|compare|
-      less(?:-eq)?\\?|greater(?:-eq)?\\?|to-seq|
+      less(?:-eq)?\\?|greater(?:-eq)?\\?|
       max(?:imum)?|min(?:imum)?|hash|length|empty\\?|next|peek|
       get\\??|set|map!?|reverse!|in-reverse|
       print(?:ln)?(?:-all)?|
@@ -134,14 +140,14 @@ patterns: [
       bits(?:-as-(?:float|double))?|rand|fill(?:-template)?|
       (?:ceil|floor)-log2|(?:next|prev)-pow2|sum|product|
       complement|digit\\?|letter\\?|(?:upper|lower)-case\\??|
-      start|end|step|inclusive\\?|to-string|
+      start|end|step|inclusive\\?|
       matches\\?|prefix\\?|suffix\\?|append(?:-all)?|
       string-join|(?:last-)?index-of-chars?|replace|trim|
-      add(?:-all)?|clear|to-array|(?:get|set)-chars|
-      to-tuple|cons|to-list|headn?|tailn?|(?:in-)?reverse|
+      add(?:-all)?|clear|(?:get|set)-chars|
+      cons|headn?|tailn?|(?:in-)?reverse|
       (?:but-)?last|transpose|seq-append|filename|line|column|
       item|unwrap-(?:token|all)|key(?:\\?|s)?|value(?:\\?|!|s)?|
-      to-symbol|symbol-join|gensym|name|id|qualified\\?|qualifier|
+      symbol-join|gensym|name|id|qualified\\?|qualifier|
       throw|with-(?:exception-handler|finally)|try-catch-finally|
       fatal|fail|with-attempt|attempt-else|generate|
       resume|suspend|break|close|active\\?|open\\?|
@@ -156,7 +162,7 @@ patterns: [
       (?:get|set)-env|call-system|stop|time|
       exp|log(?:10)?|pow|sin|cos|tan|asin|acos|atan|atan2|
       sinh|cosh|tanh|ceil|floor|round|to-(?:radians|degrees)|
-      to-vector|pop|peek|remove(?:-item|when)?|update|shorten|
+      pop|peek|remove(?:-item|when)?|update|shorten|
       lengthen|default\\?|read(?:-file|-all)?|tagged-list\\?
     )(?=\\(|\\{|\\s+\\$)"
     name: "support.function.core.stanza"
