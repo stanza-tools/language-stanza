@@ -214,7 +214,7 @@ patterns: [
       var|defpackage|deftype|defstruct|defn\\*?|
       defmulti|defmethod\\*?|defsyntax|defrule
     )(?!\\w|\\-)"
-    name: "storage.type.stanza"
+    name: "storage.type.class.stanza"
   }
   {
     match: "(?<!\\w|\\-)(public|protected|extern|lostanza)(?!\\w|\\-)"
